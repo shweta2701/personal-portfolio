@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0f2027;  /* fallback for old browsers */
+      background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+      color: #f0f0f0;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a {
+      color: #00bcd4;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #ff4081;
+    }
+    header {
+      background: rgba(0,0,0,0.7);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ff4081;
+      cursor: default;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: #ff4081;
+      color: #fff;
+    }
+    main {
+    max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      width: 100%;
+    }
+    section {
+      margin-bottom: 4rem;
+    }
+    h1, h2, h3 {
+      color: #ff4081;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    /* Hero Section */
+    #shweta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 64, 129, 0.4);
+    }
+    #shweta img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid #ff4081;
+      margin-bottom: 1.5rem;
+      object-fit: cover;
+      box-shadow: 0 0 10px #ff4081;
+    }
+    #shweta h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    #shweta p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      color: #ddd;
+    }
+    /* About Section */
+    #about p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #ccc;
+    }
+    /* Projects Section */
+    #projects .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+  .project-card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(255, 64, 129, 0.5);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 1px solid transparent;
+    }
+    .project-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 8px 30px #ff4081;
+      border-color: #ff4081;
+    }
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 0 12px #ff4081;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover img {
+      transform: scale(1.05);
+    }
+    .project-card h3 {
+      margin-bottom: 0.8rem;
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #ff79a8;
+      text-shadow: 0 0 5px #ff4081;
+    }
+    .project-card p {
+      flex-grow: 1;
+      color: #eee;
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+    .project-card a {
+      align-self: flex-start;
+      background: linear-gradient(45deg, #ff4081, #ff79a8);
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      font-weight: 700;
+      color: #fff;
+      box-shadow: 0 0 10px #ff4081;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .project-card a:hover {
+      background: linear-gradient(45deg, #e73370, #ff5a8a);
+      box-shadow: 0 0 20px #ff5a8a;
+    }
+    /* Skills Section */
+    #skills .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .skill {
+      background: #ff4081;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      box-shadow: 0 0 8px #ff4081;
+      transition: background 0.3s ease;
+    }
+    .skill:hover {
+      background: #e73370;
+      cursor: default;
+    }
+    /* Contact Section */
+    #contact form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #contact label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #ff4081;
+    }
+    #contact input,
+    #contact textarea {
+      padding: 0.7rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      resize: vertical;
+      box-shadow: 0 0 5px rgba(255, 64, 129, 0.5);
+      background: #222;
+      color: #eee;
+      transition: box-shadow 0.3s ease;
+    }
+    #contact input:focus,
+    #contact textarea:focus {
+      outline: none;
+      box-shadow: 0 0 10px #ff4081;
+    }
+    #contact button {
+      background: #ff4081;
+      color: #fff;
+      border: none;
+      padding: 0.8rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #contact button:hover {
+      background: #e73370;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background: rgba(0,0,0,0.7);
+      color: #aaa;
+      font-size: 0.9rem;
+      box-shadow: inset 0 1px 3px rgba(255,255,255,0.1);
+    }
+    /* Responsive Nav Toggle */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background: #ff4081;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background: #111;
+        height: calc(100% - 60px);
+        width: 200px;
+        flex-direction: column;
+        padding: 2rem 1rem;
+        gap: 1.5rem;
+        transition: right 0.3s ease;
+        box-shadow: -2px 0 5px rgba(255,64,129,0.5);
+        z-index: 999;
+      }
+      .nav-links.active {
+        right: 0;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">MyPortfolio</div>
+      <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" role="button" tabindex="0">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="nav-links" id="nav-links">
+        <a href="#shweta" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact-info">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="shweta" aria-label="Introduction">
+      <img src="src/images/20241017_205249.jpg" alt="Profile Picture" />
+      <h1>Hello, I'm Shweta Nannikar</h1>
+      <p>I'm a passionate web developer creating beautiful and responsive websites.
+        i'm Quick learner, enthusiastic about adopting new technologies and best practices to solve real-world problems.</p>
+    </section>
+
+    <section id="about" aria-label="About me">
+      <h2>About Me</h2>
+      <p>
+        I am Motivated and passionate Computer Science student with a strong foundation in data structures, algorithms, problem-     
+         solving, competitive programming front-end, and Back-end development. Seeking an internship to apply skills in a dynamic tech environment
+          continuously learning new technologies.
+      </p>
+    </section>
+
+    <section id="education" aria-label="Education">
+      <h2>Education</h2>
+      <ul>
+        <li><strong>B.Tech in Computer Science and Engineering:</strong> Sharad Institue Of Technology College Of Engg, 2022-2026 </li>
+        <li><strong>Higher Secondary Education (XII): </strong> V.S Bhate Junior College, 2020 - 2022</li>
+        <li><strong>Secondary Education (X): </strong> Budhgaon Highschool Budhgaon,Sangli, 2019 - 2020</li>
+      </ul>
+    </section>
+
+    <section id="projects" aria-label="Projects">
+      <h2>Projects</h2>
+      <div class="project-list enhanced-project-list">
+        <article class="project-card enhanced-project-card">
+          <h3>Portfolio Website</h3>
+          <p>A responsive portfolio website built with HTML, CSS, and JavaScript showcasing my projects and skills.</p>
+          <a href="https://github.com/janedoe/portfolio" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </article>
+        <article class="project-card enhanced-project-card">
+          <h3>Chatting application</h3>
+          <p>This is a chatting application showcase the real time messanger app build with java swings and server socket</p>
+          <a href="https://github.com/shweta2701/Chatting-Applicatioin" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </article>
+        <article class="project-card enhanced-project-card">
+          <h3>Spicey delights</h3>
+          <p>It is an E-commerce website for foody peoples asl bult with html css and js</p>
+          <a href="https://github.com/shweta2701/Spicy_delites-project" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </article>
+        <article class="project-card enhanced-project-card">
+          <h3>Agri Smart</h3>
+          <p>This project is build for smart and sustinable farming. It is  based on IOT</p>
+          <a href="https://github.com/janedoe/blog-platform" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" aria-label="Skills">
+      <h2>Skills</h2>
+      <div class="skill-list" role="list">
+        <span class="skill" role="listitem">HTML</span>
+        <span class="skill" role="listitem">CSS</span>
+        <span class="skill" role="listitem">JavaScript</span>
+        <span class="skill" role="listitem">React</span>
+        <span class="skill" role="listitem">Node.js</span>
+        <span class="skill" role="listitem">Core java</span>
+        <span class="skill" role="listitem">DSA in java</span>
+        <span class="skill" role="listitem"> Basics of MongoDB</span>
+        <span class="skill" role="listitem">SQL</span>
+        <span class="skill" role="listitem">git</span>
+      </div>
+    </section>
+
+    <section id="Personal-info" aria-label="Contact Information">
+      <h2>Personal-info</h2>
+      <ul>
+        <li><strong>Email:</strong> shwetanannikar2701@gmail.com</li>   
+         <li><strong>leetcode:</strong><a href="https://leetcode.com/u/shweta_nannikar/" target="_blank" rel="noopener noreferrer">View on leetcode</a></li>
+        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/shweta-nannikar-1b0b2a1b6/" target="_blank" rel="noopener noreferrer">View on linkdin</a></li>
+         <li><strong>Phone:</strong> +91 9322416869</li>
+        <li><strong>Address:</strong>Sangli,Maharashtra india</li>
+      </ul>
+    </section>
+
+    <section id="contact" aria-label="Contact me">
+      
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Shweta Nannikar. All rights reserved.
+  </footer>
+</body>
+</html>
